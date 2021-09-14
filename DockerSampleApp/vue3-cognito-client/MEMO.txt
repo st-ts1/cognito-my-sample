@@ -1,0 +1,16 @@
+ homeにglobalインストール用の設定 ==
+mkdir ~/.npm-global
+npm config set prefix '~/.npm-global'
+export PATH=~/.npm-global/bin:$PATH
+
+=== globalインストール ==
+npm install -g npm
+npm install -g @vue/cli
+npm install-g  @vue/cli-init
+
+=== プロジェクト作成 ==
+vue create vue3-cognito-client
+(vue3を選択)
+
+=== element-plus追加 ==
+vue add element-plus
