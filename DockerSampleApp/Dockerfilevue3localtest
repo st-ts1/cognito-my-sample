@@ -1,0 +1,8 @@
+FROM node:lts-alpine
+
+RUN npm install -g npm && \
+npm install -g @vue/cli && \
+npm install -g  @vue/cli-init
+
+CMD ["/bin/sh"]
+

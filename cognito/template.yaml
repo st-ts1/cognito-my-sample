@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  cognito
+
+  Sample SAM Template for cognito
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  # Cognitoユーザプールの設定
+  MyCognitoUserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      Policies:
+        PasswordPolicy:
+          MinimumLength: 8
+      # 管理者のみにユーザーの作成を許可する
+      # 管理者は、ブラウザでアクセスしてユーザを作ることができる
+      # awsコマンドでパスワードを付けることができる
+      # aws cognito-idp admin-set-user-password --user-pool-id us-west-2_ユーザプールID --username ユーザ名 --password パスワード --permanent
+      AdminCreateUserConfig:
+        AllowAdminCreateUserOnly: True
+      UsernameAttributes:
+        - email
+      Schema:
+        - AttributeDataType: String
+          Name: email
+          Required: false
+  # Cognitoアプリクライアントの設定
+  MyCognitoUserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      UserPoolId: !Ref MyCognitoUserPool
+      GenerateSecret: false
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  HelloWorldApi:
+    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+    Value: !Sub "hoge"
+#  MyCognitoUserPool:
+#    Description: "MyCognitoUserPool ID"
+#    Value: !GetAtt MyCognitoUserPool.Arn
+#  MyCognitoUserPoolClient:
+#    Description: "MyCognitoUserPoolClient ID"
+#    Value: !GetAtt MyCognitoUserPoolClient.Arn
