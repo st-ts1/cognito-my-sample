@@ -1,7 +1,8 @@
-import ElementPlus from 'element-plus'
-import 'element-plus/lib/theme-chalk/index.css'
-import locale from 'element-plus/lib/locale/lang/ja'
+import Vue from 'vue'
+import Element from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+import locale from 'element-ui/lib/locale/lang/ja'
 
-export default (app) => {
-  app.use(ElementPlus, { locale })
-}
+// 参考: https://element-plus.org/#/jp/component/i18n
+// あってそうだが、上手く日本語になっていない。。。
+Vue.use(Element, { locale })

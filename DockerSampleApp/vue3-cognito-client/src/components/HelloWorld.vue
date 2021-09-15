@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <el-date-picker v-model="value1" type="date" placeholder="Pick a day"></el-date-picker>
     <h1>{{ msg }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
