@@ -14,3 +14,17 @@ vue create vue3-cognito-client
 
 === element-plus追加 ==
 vue add element-plus
+=== axios追加===
+$ npm install axios
+
+=== git登録されていない依存モジュールの復活 ==
+npm install
+
+=== 開発サーバ ===
+npm run serve
+
+=== テスト ===
+$ npm run test:unit
+
+=== コンパイル ===
+$ npm run build
