@@ -16,6 +16,7 @@
     <hr />
     accessToken {{ accessToken }}<br />
     idToken {{ idToken }}<br />
+        <el-button v-on:click="call_api()">API呼び出し</el-button>
     <hr />
   </div>
 </template>
@@ -151,6 +152,41 @@ export default {
           alert(err.message || JSON.stringify(err));
         },
       });
+    },
+    call_api: function () {
+      let vm = this;
+      axios
+        .get("http://192.168.56.103:8000/checkjwt", {
+          headers: { Authorization: vm.idToken },
+          params: {}
+        })
+        // thenで成功した場合の処理をかける
+        .then((response) => {
+          console.log("status:", response.status); // 200
+          console.log(response.data); // response body.
+          if (response.status != 200) {
+            console.log("API失敗");
+            vm.$message({
+              message: "APIエラー " + response.status,
+              type: "error",
+            });
+          } else {
+                        console.log("API失敗");
+            vm.$message({
+              message: "API成功",
+              type: "success",
+            });
+          }
+        })
+        // catchでエラー時の挙動を定義する
+        .catch((err) => {
+          console.log("axios err:", err);
+          console.log("API時に予期せぬエラー");
+          vm.$message({
+            message: "API時に予期せぬエラー",
+            type: "error",
+          });
+        });
     },
   },
 };
