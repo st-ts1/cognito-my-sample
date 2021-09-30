@@ -16,6 +16,9 @@ vue create vue3-cognito-client
 vue add element-plus
 === axios追加===
 $ npm install axios
+===
+npm add aws-sdk
+npm add amazon-cognito-identity-js
 
 === git登録されていない依存モジュールの復活 ==
 npm install

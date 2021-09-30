@@ -9,7 +9,8 @@ pip3 install --no-cache-dir aiofiles && \
 pip3 install --no-cache-dir gunicorn && \
 pip3 install --no-cache-dir boto3
 
-RUN pip3 install python-jose[cryptography]
+RUN pip3 install python-jose[cryptography] && \
+pip3 install --no-cache-dir requests
 
 # 物理OSのfastapiディレクトリをコンテナ内の/apiへコピー
 #COPY fastapi /fastapi
