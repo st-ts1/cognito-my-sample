@@ -118,4 +118,6 @@ def checkjwt(response: Response, imsi:str="", sort:str="desc", to:int=123, limit
         # パスワード不一致のため何もしない
         return JSONResponse(status_code=status.HTTP_401_UNAUTHORIZED)
     else:
-        return { "ok": True }
+        claims = ret.get("claims")
+        logger.info(f"claims: {claims}")
+        return { "ok": True, "claims": claims }
