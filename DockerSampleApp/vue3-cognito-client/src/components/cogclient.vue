@@ -54,7 +54,7 @@ export default {
     get_cog_info: function () {
       var vm = this;
       axios
-        .get("http://192.168.56.103:8000/cog_info", {
+        .get(process.env.VUE_APP_API_URL+"/cog_info", {
           //headers: { Authorization: vm.loginpasswd },
           //params: {}
         })
@@ -156,7 +156,7 @@ export default {
     call_api: function () {
       let vm = this;
       axios
-        .get("http://192.168.56.103:8000/checkjwt", {
+        .get(process.env.VUE_APP_API_URL+"/checkjwt", {
           headers: { Authorization: vm.idToken },
           params: {}
         })
