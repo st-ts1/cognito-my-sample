@@ -1,6 +1,10 @@
 # ビルド環境
 FROM node:lts-alpine as build-stage
 
+RUN npm install -g npm && \
+npm install -g @vue/cli && \
+npm install -g  @vue/cli-init
+
 WORKDIR /vue3-cognito-client
 # 先にnpmパッケージをインストールすることでDockerのキャッシュを作る
 COPY vue3-cognito-client/package*.json ./
@@ -18,6 +22,9 @@ pip3 install --no-cache-dir python-multipart  && \
 pip3 install --no-cache-dir aiofiles && \
 pip3 install --no-cache-dir gunicorn && \
 pip3 install --no-cache-dir boto3
+
+RUN pip3 install python-jose[cryptography] && \
+pip3 install --no-cache-dir requests
 
 # 物理OSのfastapiディレクトリをコンテナ内の/fastapiへコピー
 COPY fastapi /fastapi

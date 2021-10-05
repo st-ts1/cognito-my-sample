@@ -25,6 +25,9 @@ npm add amazon-cognito-identity-js
 .env.development
 .env.production
 
+===vueの設定 build後のパス指定===
+vue.config.js
+
 === git登録されていない依存モジュールの復活 ==
 npm install
 
