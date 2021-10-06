@@ -16,9 +16,17 @@ vue create vue3-cognito-client
 vue add element-plus
 === axios追加===
 $ npm install axios
-===
+=== cognitoクライアントライブラリ追加 ==
 npm add aws-sdk
 npm add amazon-cognito-identity-js
+
+===npm run serve(開発)とbuild(本番)でAPI呼び分け==
+下記のファイルを作る
+.env.development
+.env.production
+
+===vueの設定 build後のパス指定===
+vue.config.js
 
 === git登録されていない依存モジュールの復活 ==
 npm install
