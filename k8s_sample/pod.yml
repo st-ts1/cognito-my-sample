@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cog-pod
+  labels: 
+    svc2pod: web
+spec:
+  containers:
+  - name: cog-cont
+    # 参考: https://qiita.com/ocadaruma/items/efe720e46ae7ecb9ec25
+    image: example/cognito-my-sample:v1
+    imagePullPolicy: Never
+    ports:
+    - name: http
+      containerPort: 8000

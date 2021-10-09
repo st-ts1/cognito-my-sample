@@ -1,4 +1,4 @@
 #!/bin/sh
 
-# テスト実行、ビルド環境のイメージをビルド
-docker build -t cognito-my-sample:last -f Dockerfile .
+# 本番環境のイメージをビルド
+docker build -t example/cognito-my-sample:v1 -f Dockerfile .
