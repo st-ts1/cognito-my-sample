@@ -13,3 +13,19 @@ spec:
     ports:
     - name: http
       containerPort: 8000
+    env:
+      - name: REGION
+        valueFrom:
+          configMapKeyRef:
+            name: cognito-config
+            key: REGION
+      - name: USERPOOLID
+        valueFrom:
+          configMapKeyRef:
+            name: cognito-config
+            key: USERPOOLID
+      - name: CLIENTID
+        valueFrom:
+          configMapKeyRef:
+            name: cognito-config
+            key: CLIENTID
