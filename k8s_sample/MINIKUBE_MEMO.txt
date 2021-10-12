@@ -1,0 +1,10 @@
+minikube状態確認
+$ minikube status
+
+minikubeのDockerデーモンを使用する
+$ eval $(minikube docker-env)
+
+serviceのURL確認
+minikube service web-service
+
+kubectl get pod -o=wide
