@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cog-deployment
+spec:
+  replicas: 4
+  strategy:
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 0%
+  minReadySeconds: 5
+  selector:
+    matchLabels:
+      pod: cog-pod
+  template:
+    metadata:
+      labels: 
+        pod: cog-pod
+    spec:
+      containers:
+      - name: cog-cont
+        image: example/cognito-my-sample:v1
+        ports:
+        - name: http
+          containerPort: 8000
+        env:
+          - name: REGION
+            valueFrom:
+              configMapKeyRef:
+                name: cognito-config
+                key: REGION
+          - name: USERPOOLID
+            valueFrom:
+              configMapKeyRef:
+                name: cognito-config
+                key: USERPOOLID
+          - name: CLIENTID
+            valueFrom:
+              configMapKeyRef:
+                name: cognito-config
+                key: CLIENTID
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service
+spec:
+  selector:
+    pod: cog-pod
+  ports:
+  - port: 8000
+    targetPort: http
+    nodePort: 30000
+  type: NodePort
